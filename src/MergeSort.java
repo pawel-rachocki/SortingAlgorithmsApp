@@ -52,14 +52,14 @@ public class MergeSort implements SortingAlgorithm{
             k++;
         }
 
-        // Copy rest of the elements from left array - if exist
+        // Copy rest of elements from the left array - if exist
         while (i < n1) {
             array[k] = leftArray[i];
             i++;
             k++;
         }
 
-        // Copy rest of the elements from right array - if exist
+        // Copy rest of elements from the right array - if exist
         while (j < n2) {
             array[k] = rightArray[j];
             j++;
