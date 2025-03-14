@@ -1,8 +1,10 @@
-
+package sorting;
 //https://en.wikipedia.org/wiki/Merge_sort
 //https://www.baeldung.com/java-merge-sort
 
-public class MergeSort implements SortingAlgorithm{
+import sorting.SortingAlgorithm;
+
+public class MergeSort implements SortingAlgorithm {
     @Override
     public void sort(int[] arr) {
         if (arr == null || arr.length <= 1){
