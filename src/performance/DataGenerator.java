@@ -1,3 +1,5 @@
+package performance;
+
 import java.util.Random;
 
 public class DataGenerator {
