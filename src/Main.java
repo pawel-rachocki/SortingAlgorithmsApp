@@ -2,6 +2,7 @@ import performance.DataGenerator;
 import performance.PerformanceTester;
 import sorting.BubbleSort;
 import sorting.MergeSort;
+import sorting.QuickSort;
 import sorting.SortingAlgorithm;
 
 import java.util.Scanner;
@@ -13,17 +14,21 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose sorting algorithm: 1 - Bubble Sort");
         System.out.println("Choose sorting algorithm: 2 - MergeSort");
+        System.out.println("Choose sorting algorithm: 3 - QuickSort");
         int choice = scanner.nextInt();
 
         SortingAlgorithm algorithm = null;
-        if (choice == 1) {
-            algorithm = new BubbleSort();
-        }
-        if (choice == 2) {
-            algorithm = new MergeSort();
+
+        switch (choice){
+            case 1 -> algorithm = new BubbleSort();
+            case 2 -> algorithm = new MergeSort();
+            case 3 -> algorithm = new QuickSort();
+            default -> {
+                break;
+            }
         }
 
-        int[] array = DataGenerator.generateRandomArray(1000);
+        int[] array = DataGenerator.generateRandomArray(5);
         long timeTaken = PerformanceTester.measureSortingTime(algorithm, array);
 
         System.out.println("Sorting time = " + timeTaken + " ns");
