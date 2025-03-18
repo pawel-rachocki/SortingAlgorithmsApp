@@ -1,35 +1,77 @@
 package gui;
 
-
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
+import java.util.Random;
 
 public class SortingVisualizer extends Application {
-    private ArrayDisplay arrayDisplay;
+    private int[] mainArray;
+    private ArrayDisplay insertionSortDisplay;
+    private ArrayDisplay quickSortDisplay;
+    private ArrayDisplay bubbleSortDisplay;
+    private ArrayDisplay mergeSortDisplay;
+    private static final int ARRAY_SIZE = 50;
+
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("GUI - Sorting Algorithms Visualizer");
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Sorting Algorithm Visualizer");
 
-        Button startButton = new Button("Sort");
+        // Start Sorting button
+        Button startButton = new Button("Begin test");
 
-        //Display array frame/window
-        arrayDisplay = new ArrayDisplay(800,600);
+        // Generate array button
+        Button randomizeButton = new Button("Generate new Array");
+        randomizeButton.setOnAction(e -> randomizeArray());
 
-        VBox layout = new VBox(10);
-        layout.getChildren().add(startButton);
+        // Array visualisation area
+        insertionSortDisplay = new ArrayDisplay(400, 300);
+        quickSortDisplay = new ArrayDisplay(400, 300);
+        mergeSortDisplay = new ArrayDisplay(400, 300);
+        bubbleSortDisplay = new ArrayDisplay(400, 300);
 
-        Scene scene = new Scene(layout, 800, 600);
+        VBox quickSortBox = new VBox(10, quickSortDisplay);
+        VBox bubbleSortBox = new VBox(10, bubbleSortDisplay);
+        VBox mergeSortBox = new VBox(10, mergeSortDisplay);
+        VBox insertionSortBox = new VBox(10, insertionSortDisplay);
+
+        // Layout
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(20);
+        gridPane.setVgap(20);
+        gridPane.add(quickSortBox,0,0);
+        gridPane.add(bubbleSortBox,1,0);
+        gridPane.add(mergeSortBox,0,1);
+        gridPane.add(insertionSortBox,1,1);
+        gridPane.add(randomizeButton,0,2,2,1);
+        gridPane.add(startButton,0,3,2,1);
+
+
+        Scene scene = new Scene(gridPane, 850, 750);
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        // Generate array for the 1st time
+        randomizeArray();
     }
+
+    private void randomizeArray() {
+        Random rand = new Random();
+        this.mainArray = new int[ARRAY_SIZE];
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            mainArray[i] = rand.nextInt(996) + 5; // Range 5-1000
+        }
+        quickSortDisplay.setArr(mainArray.clone());
+        bubbleSortDisplay.setArr(mainArray.clone());
+        mergeSortDisplay.setArr(mainArray.clone());
+        insertionSortDisplay.setArr(mainArray.clone());
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
-
-
 }
