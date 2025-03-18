@@ -2,10 +2,8 @@ package gui;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
-
 import javafx.scene.paint.Color;
 
-import java.awt.*;
 public class ArrayDisplay extends Canvas {
     private int[] arr;
     public ArrayDisplay(int width, int height){
@@ -16,8 +14,7 @@ public class ArrayDisplay extends Canvas {
         this.arr = array;
         drawArray();
     }
-
-
+    
     public void drawArray() {
         if (arr == null) {
             return;

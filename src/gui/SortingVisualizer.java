@@ -12,10 +12,13 @@ public class SortingVisualizer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Pawel Rachocki - Sorting Algorithms Visualizer");
+        primaryStage.setTitle("GUI - Sorting Algorithms Visualizer");
 
         Button startButton = new Button("Sort");
-        
+
+        //Display array frame/window
+        arrayDisplay = new ArrayDisplay(800,600);
+
         VBox layout = new VBox(10);
         layout.getChildren().add(startButton);
 
