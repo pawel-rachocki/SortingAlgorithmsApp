@@ -9,8 +9,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import sorting.SortingAlgorithm;
+import sorting.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class SortingVisualizer extends Application {
@@ -27,7 +29,8 @@ public class SortingVisualizer extends Application {
         primaryStage.setTitle("Sorting Algorithm Visualizer");
 
         // Start Sorting button
-        Button startButton = new Button("Begin test");
+        Button startButton = new Button("Sort");
+        startButton.setOnAction(e -> startSorting());
 
         // Generate array button
         Button randomizeButton = new Button("Generate new Array");
@@ -76,16 +79,31 @@ public class SortingVisualizer extends Application {
         insertionSortDisplay.setArr(mainArray.clone());
     }
 
+    private void startSorting(){
+        animateSort(quickSortDisplay, new QuickSort(), mainArray.clone());
+        animateSort(bubbleSortDisplay, new BubbleSort(), mainArray.clone());
+        animateSort(mergeSortDisplay, new MergeSort(), mainArray.clone());
+        animateSort(insertionSortDisplay, new InsertionSort(), mainArray.clone());
+    }
+
     //https://docs.oracle.com/javase/8/javafx/api/javafx/animation/Timeline.html
     private void animateSort(ArrayDisplay display, SortingAlgorithm algorithm, int[] array) {
         Timeline timeline = new Timeline();
-        timeline.setCycleCount(array.length);
+        timeline.setCycleCount(1);  //Only 1 cycle
 
-        algorithm.sort(array, (stepArray) -> {
-            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), e -> display.setArr(stepArray.clone())));
-        });
-        timeline.play();
+        List<int[]> steps = new ArrayList<>(); //List for sorting steps
+
+        // Sort and save steps
+        algorithm.sort(array, (stepArray) -> steps.add(stepArray.clone()));
+
+        for (int i = 0; i < steps.size(); i++) {
+            final int index = i;
+            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(20 * index), e -> display.setArr(steps.get(index))));
+        }
+
+        timeline.playFromStart(); // Start Animation
     }
+
 
 
     public static void main(String[] args) {
