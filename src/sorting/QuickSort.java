@@ -1,41 +1,48 @@
 package sorting;
 
+import java.util.function.Consumer;
 //https://www.baeldung.com/java-quicksort
+
 public class QuickSort implements SortingAlgorithm {
-
-    public void sort(int[] array) {
-        quickSort(array, 0, array.length - 1);
-    }
     @Override
-    public String getName() {
-        return "QuickSort";
+    public void sort(int[] arr, Consumer<int[]> stepConsumer) {
+        quickSort(arr, 0, arr.length - 1, stepConsumer);
     }
 
-    private void quickSort(int[] array, int low, int high) {
+    private void quickSort(int[] arr, int low, int high, Consumer<int[]> stepConsumer) {
         if (low < high) {
-            int pivotIndex = partition(array, low, high);
-            quickSort(array, low, pivotIndex - 1);
-            quickSort(array, pivotIndex + 1, high);
+            int pi = partition(arr, low, high, stepConsumer);
+            quickSort(arr, low, pi - 1, stepConsumer);
+            quickSort(arr, pi + 1, high, stepConsumer);
         }
     }
 
-    private int partition(int[] array, int low, int high) {
-        int pivot = array[high];
-        int i = low - 1;
+    private int partition(int[] arr, int low, int high, Consumer<int[]> stepConsumer) {
+        int pivot = arr[high];
+        int i = (low - 1);
 
         for (int j = low; j < high; j++) {
-            if (array[j] <= pivot) {
+            if (arr[j] < pivot) {
                 i++;
-                swap(array, i, j);
+                swap(arr, i, j);
+                stepConsumer.accept(arr.clone()); // Save array
             }
         }
-        swap(array, i + 1, high);
+
+        swap(arr, i + 1, high);
+        stepConsumer.accept(arr.clone()); // Save array
         return i + 1;
     }
 
-    private void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    private void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    @Override
+    public String getName() {
+        return "Quick Sort";
     }
 }
+
