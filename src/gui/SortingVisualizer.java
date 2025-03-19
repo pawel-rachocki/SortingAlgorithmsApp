@@ -1,11 +1,16 @@
 package gui;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import sorting.SortingAlgorithm;
+
 import java.util.Random;
 
 public class SortingVisualizer extends Application {
@@ -70,6 +75,18 @@ public class SortingVisualizer extends Application {
         mergeSortDisplay.setArr(mainArray.clone());
         insertionSortDisplay.setArr(mainArray.clone());
     }
+
+    //https://docs.oracle.com/javase/8/javafx/api/javafx/animation/Timeline.html
+    private void animateSort(ArrayDisplay display, SortingAlgorithm algorithm, int[] array) {
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(array.length);
+
+        algorithm.sort(array, (stepArray) -> {
+            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), e -> display.setArr(stepArray.clone())));
+        });
+        timeline.play();
+    }
+
 
     public static void main(String[] args) {
         launch(args);
