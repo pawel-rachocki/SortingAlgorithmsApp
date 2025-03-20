@@ -83,7 +83,7 @@ public class SortingVisualizer extends Application {
         gridPane.add(sizeBox,0,2,2,1);
 
 
-        Scene scene = new Scene(gridPane, 850, 750);
+        Scene scene = new Scene(gridPane, 825, 760);
         primaryStage.setScene(scene);
         primaryStage.show();
 
