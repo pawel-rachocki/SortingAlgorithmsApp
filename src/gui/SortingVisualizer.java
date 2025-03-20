@@ -125,6 +125,7 @@ public class SortingVisualizer extends Application {
             timeline.getKeyFrames().add(new KeyFrame(Duration.millis(20 * index), e -> display.setArr(steps.get(index))));
         }
 
+        timeline.setOnFinished(e -> display.flagSorted());
         timeline.playFromStart(); // Start Animation
     }
 
