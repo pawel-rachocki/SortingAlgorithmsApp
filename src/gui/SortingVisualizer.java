@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ public class SortingVisualizer extends Application {
     private ArrayDisplay quickSortDisplay;
     private ArrayDisplay bubbleSortDisplay;
     private ArrayDisplay mergeSortDisplay;
-    private static final int ARRAY_SIZE = 50;
+    private static final int ARRAY_SIZE = 70;
 
 
     @Override
@@ -42,10 +43,16 @@ public class SortingVisualizer extends Application {
         mergeSortDisplay = new ArrayDisplay(400, 300);
         bubbleSortDisplay = new ArrayDisplay(400, 300);
 
-        VBox quickSortBox = new VBox(10, quickSortDisplay);
-        VBox bubbleSortBox = new VBox(10, bubbleSortDisplay);
-        VBox mergeSortBox = new VBox(10, mergeSortDisplay);
-        VBox insertionSortBox = new VBox(10, insertionSortDisplay);
+        // Labels
+        Label quickSortLabel = new Label("Quick Sort");
+        Label bubbleSortLabel = new Label("Bubble Sort");
+        Label mergeSortLabel = new Label("Merge Sort");
+        Label insertionSortLabel = new Label("Insertion Sort");
+        
+        VBox quickSortBox = new VBox(5, quickSortLabel, quickSortDisplay);
+        VBox bubbleSortBox = new VBox(5, bubbleSortLabel, bubbleSortDisplay);
+        VBox mergeSortBox = new VBox(5, mergeSortLabel, mergeSortDisplay);
+        VBox insertionSortBox = new VBox(5, insertionSortLabel, insertionSortDisplay);
 
         // Layout
         GridPane gridPane = new GridPane();
