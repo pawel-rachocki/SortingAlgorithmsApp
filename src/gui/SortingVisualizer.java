@@ -3,10 +3,13 @@ package gui;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,12 +25,18 @@ public class SortingVisualizer extends Application {
     private ArrayDisplay quickSortDisplay;
     private ArrayDisplay bubbleSortDisplay;
     private ArrayDisplay mergeSortDisplay;
-    private static final int ARRAY_SIZE = 70;
+    private static int arraySize = 50;
 
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Sorting Algorithm Visualizer");
+
+        // ComboBox for array lenght customization for user
+        ComboBox<Integer> sizeSelector = new ComboBox<>();
+        sizeSelector.getItems().addAll(10, 20, 30, 45, 50, 75, 100);
+        sizeSelector.setValue(arraySize);  // 50 = DEFAULT
+        sizeSelector.setOnAction(e -> arraySize = sizeSelector.getValue());
 
         // Start Sorting button
         Button startButton = new Button("Sort");
@@ -36,6 +45,14 @@ public class SortingVisualizer extends Application {
         // Generate array button
         Button randomizeButton = new Button("Generate new Array");
         randomizeButton.setOnAction(e -> randomizeArray());
+
+        // SizeBox section
+        HBox sizeBox = new HBox(10, new Label("ArraySize:"), sizeSelector);
+        sizeBox.setAlignment(Pos.CENTER);
+
+        // Button section
+        HBox buttonBox = new HBox(10, randomizeButton, startButton);
+        buttonBox.setAlignment(Pos.CENTER);
 
         // Array visualisation area
         insertionSortDisplay = new ArrayDisplay(400, 300);
@@ -48,7 +65,7 @@ public class SortingVisualizer extends Application {
         Label bubbleSortLabel = new Label("Bubble Sort");
         Label mergeSortLabel = new Label("Merge Sort");
         Label insertionSortLabel = new Label("Insertion Sort");
-        
+
         VBox quickSortBox = new VBox(5, quickSortLabel, quickSortDisplay);
         VBox bubbleSortBox = new VBox(5, bubbleSortLabel, bubbleSortDisplay);
         VBox mergeSortBox = new VBox(5, mergeSortLabel, mergeSortDisplay);
@@ -62,8 +79,8 @@ public class SortingVisualizer extends Application {
         gridPane.add(bubbleSortBox,1,0);
         gridPane.add(mergeSortBox,0,1);
         gridPane.add(insertionSortBox,1,1);
-        gridPane.add(randomizeButton,0,2,2,1);
-        gridPane.add(startButton,0,3,2,1);
+        gridPane.add(buttonBox,0,3,2,1);
+        gridPane.add(sizeBox,0,2,2,1);
 
 
         Scene scene = new Scene(gridPane, 850, 750);
@@ -76,8 +93,8 @@ public class SortingVisualizer extends Application {
 
     private void randomizeArray() {
         Random rand = new Random();
-        this.mainArray = new int[ARRAY_SIZE];
-        for (int i = 0; i < ARRAY_SIZE; i++) {
+        this.mainArray = new int[arraySize];
+        for (int i = 0; i < arraySize; i++) {
             mainArray[i] = rand.nextInt(996) + 5; // Range 5-1000
         }
         quickSortDisplay.setArr(mainArray.clone());
