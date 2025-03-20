@@ -7,12 +7,18 @@ import java.util.Random;
 
 public class ArrayDisplay extends Canvas {
     private int[] arr;
+    private boolean isSorted = false;
     public ArrayDisplay(int width, int height){
         super(width,height);
     }
 
     public void setArr(int[] array){
         this.arr = array;
+        this.isSorted = false;
+        drawArray();
+    }
+    public void flagSorted(){
+        this.isSorted = true;
         drawArray();
     }
     
@@ -28,7 +34,7 @@ public class ArrayDisplay extends Canvas {
 
         for (int i = 0; i < arr.length; i++) {
             double barHeight = (arr[i] / 1000.0) * maxHeight; // Scale
-            gc.setFill(Color.BLUE);
+            gc.setFill(isSorted ? Color.GREEN : Color.BLUE);
             gc.fillRect(i * barWidth, maxHeight - barHeight, barWidth - 2, barHeight);
         }
     }
