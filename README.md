@@ -29,9 +29,9 @@ It enables side-by-side comparison of **Bubble Sort**, **Insertion Sort**, **Mer
 
 📸 Screenshots
 
-![Image Alt](https://github.com/pawel-rachocki/ToDoApp/blob/main/ToDo.png?raw=true)
-![Image Alt](https://github.com/pawel-rachocki/ToDoApp/blob/main/ToDo.png?raw=true)
-![Image Alt](https://github.com/pawel-rachocki/ToDoApp/blob/main/ToDo.png?raw=true)
+![Image Alt](https://github.com/pawel-rachocki/SortingAlgorithmsApp/blob/main/screenshots/SortingVisualizer_1.png?raw=true)
+![Image Alt](https://github.com/pawel-rachocki/SortingAlgorithmsApp/blob/main/screenshots/SortingVisualizer_2.png?raw=true)
+![Image Alt](https://github.com/pawel-rachocki/SortingAlgorithmsApp/blob/main/screenshots/SortingVisualizer_3.png?raw=true)
 
 
 📄 License
