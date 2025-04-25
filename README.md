@@ -27,24 +27,15 @@ It enables side-by-side comparison of **Bubble Sort**, **Insertion Sort**, **Mer
 - Java 17 or later
 - JavaFX (e.g., OpenJFX) — added as a dependency or configured manually
 
+📸 Screenshots
 
-🏗️ Project Structure
-
-  sorting-visualizer/
-  │
-  ├── src/
-  │   ├── gui/
-  │   │   ├── SortingVisualizer.java      # Main JavaFX application class
-  │   │   └── ArrayDisplay.java           # Custom canvas for drawing bars
-  │   │
-  │   └── sorting/
-  │       ├── SortingAlgorithm.java       # Sorting algorithm interface
-  │       ├── BubbleSort.java
-  │       ├── InsertionSort.java
-  │       ├── MergeSort.java
-  │       └── QuickSort.java
-  │
-  └── README.md
+![Image Alt](https://github.com/pawel-rachocki/ToDoApp/blob/main/ToDo.png?raw=true)
+![Image Alt](https://github.com/pawel-rachocki/ToDoApp/blob/main/ToDo.png?raw=true)
+![Image Alt](https://github.com/pawel-rachocki/ToDoApp/blob/main/ToDo.png?raw=true)
 
 
+📄 License
+
+This project was created for educational purposes to visually demonstrate how different sorting algorithms work.
+Feel free to fork the repository or reach out if you have suggestions or want to contribute!
 
