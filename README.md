@@ -30,21 +30,21 @@ It enables side-by-side comparison of **Bubble Sort**, **Insertion Sort**, **Mer
 
 🏗️ Project Structure
 
-sorting-visualizer/
-│
-├── src/
-│   ├── gui/
-│   │   ├── SortingVisualizer.java      # Main JavaFX application class
-│   │   └── ArrayDisplay.java           # Custom canvas for drawing bars
-│   │
-│   └── sorting/
-│       ├── SortingAlgorithm.java       # Sorting algorithm interface
-│       ├── BubbleSort.java
-│       ├── InsertionSort.java
-│       ├── MergeSort.java
-│       └── QuickSort.java
-│
-└── README.md
+  sorting-visualizer/
+  │
+  ├── src/
+  │   ├── gui/
+  │   │   ├── SortingVisualizer.java      # Main JavaFX application class
+  │   │   └── ArrayDisplay.java           # Custom canvas for drawing bars
+  │   │
+  │   └── sorting/
+  │       ├── SortingAlgorithm.java       # Sorting algorithm interface
+  │       ├── BubbleSort.java
+  │       ├── InsertionSort.java
+  │       ├── MergeSort.java
+  │       └── QuickSort.java
+  │
+  └── README.md
 
 
 
